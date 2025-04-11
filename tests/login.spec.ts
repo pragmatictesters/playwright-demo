@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { beforeEach } from "node:test";
+import { LoginPage } from "../pages/login-page";
+import { InventoryPage } from "../pages/inventory-page";
 
 test.beforeEach("Access login page", async ({ page }) => {
   console.log(`Test ${test.info().title}`);
@@ -39,6 +41,14 @@ test(
 
 test("Visual test - login page", async ({ page }) => {
     await expect(page).toHaveScreenshot("login-page.png");
+});
+
+test("test with valid user credentials using page object", async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  await loginPage.goto();
+  await loginPage.login("standard_user", "secret_sauce");
+  const inventoryPage = new InventoryPage(page);
+  expect(await inventoryPage.getPageHeader()).toContain("Productss");
 });
 
 
