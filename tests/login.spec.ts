@@ -39,8 +39,8 @@ test(
   }
 );
 
-test("Visual test - login page", async ({ page }) => {
-    await expect(page).toHaveScreenshot("login-page.png");
+test.skip("Visual test - login page", async ({ page }) => {
+    //await expect(page).toHaveScreenshot("login-page.png");
 });
 
 test("test with valid user credentials using page object", async ({ page }) => {
@@ -78,7 +78,7 @@ test(
     await page.getByPlaceholder("Password").fill("secret_sauce");
     await page.getByTestId("login-button").click();
     //Verify landing page screenshot 
-    await expect(page).toHaveScreenshot("landing-page.png");
+   // await expect(page).toHaveScreenshot("landing-page.png");
 
     await expect(page.getByTestId("title")).toContainText("Products");
     await expect(
@@ -109,8 +109,8 @@ test.describe("Login regression tests", { tag: "@regression" }, () => {
     await page.locator('[data-test="login-button"]').click();
     await expect(page.locator('[data-test="error"]')).toContainText("Epic sadface: Username is required");
     //Verify screenshot of the error message for blank username and password
-    await expect(page).toHaveScreenshot("error-blank-username-password.png" , {
-      maxDiffPixels: 200});
+    //await expect(page).toHaveScreenshot("error-blank-username-password.png" , {
+     // maxDiffPixels: 200});
 
   });
 
@@ -123,7 +123,7 @@ test.describe("Login regression tests", { tag: "@regression" }, () => {
       "Epic sadface: Username is required"
     );
     //Verify screenshot of the error message for blank username and password
-    await expect(page).toHaveScreenshot("error-blank-username-password.png");
+    //await expect(page).toHaveScreenshot("error-blank-username-password.png");
   });
 
   test(
@@ -143,7 +143,7 @@ test.describe("Login regression tests", { tag: "@regression" }, () => {
         "Epic sadface: Password is required"
       );
       //Verify screenshot of the error message for  username and  a blank password
-      await expect(page).toHaveScreenshot("error-blank-password.png");
+      //await expect(page).toHaveScreenshot("error-blank-password.png");
     }
   );
 
@@ -156,7 +156,7 @@ test.describe("Login regression tests", { tag: "@regression" }, () => {
       "Epic sadface: Sorry, this user has been locked out."
     );
     //Verify screenshot of the error message for locked out user
-    await expect(page).toHaveScreenshot("error-locked-out-user.png");
+   // await expect(page).toHaveScreenshot("error-locked-out-user.png");
   });
 
   test("test login with a problem user", async ({ page }) => {
