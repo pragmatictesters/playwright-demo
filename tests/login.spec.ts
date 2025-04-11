@@ -48,7 +48,7 @@ test("test with valid user credentials using page object", async ({ page }) => {
   await loginPage.goto();
   await loginPage.login("standard_user", "secret_sauce");
   const inventoryPage = new InventoryPage(page);
-  expect(await inventoryPage.getPageHeader()).toContain("Productss");
+  expect(await inventoryPage.getPageHeader()).toContain("Products");
 });
 
 
